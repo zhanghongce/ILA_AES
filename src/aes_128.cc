@@ -1,6 +1,8 @@
 /// \file The definition of AES 128 function
 ///  Hongce Zhang (hongcez@princeton.edu)
 
+//For sub-process of complicated instruction
+
 #include "aes_128.h"
 #include <ilang/ilang++.h>
 //#include <ilang/ila/ast/expr.h>

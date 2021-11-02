@@ -1,50 +1,50 @@
-{
-  "state mapping": {  
-    "aes_address"        : "m1.aes_reg_opaddr_i.reg_out",
-    "aes_length"         : "m1.aes_reg_oplen_i.reg_out",
-    "aes_key"            : "m1.aes_reg_key0_i.reg_out",
-    "aes_counter"        : "m1.aes_reg_ctr_i.reg_out",
-    "aes_status"         : "m1.aes_reg_state",
-    "XRAM"               : "**MEM**XRAM",
-    "outdata"            : "m1.data_out_reg"
-  },
+// {
+//   "state mapping": {  
+//     "aes_address"        : "m1.aes_reg_opaddr_i.reg_out",
+//     "aes_length"         : "m1.aes_reg_oplen_i.reg_out",
+//     "aes_key"            : "m1.aes_reg_key0_i.reg_out",
+//     "aes_counter"        : "m1.aes_reg_ctr_i.reg_out",
+//     "aes_status"         : "m1.aes_reg_state",
+//     "XRAM"               : "**MEM**XRAM",
+//     "outdata"            : "m1.data_out_reg"
+//   },
 
 
-  "input mapping": {
-     //"inst":"RTL.inst"
-  },
+//   "input mapping": {
+//      //"inst":"RTL.inst"
+//   },
 
-  "rtl interface-connection" : {
-    "CLOCK" : "CLK",
-    "RESET" : "RST"
-  },
+//   "rtl interface-connection" : {
+//     "CLOCK" : "CLK",
+//     "RESET" : "RST"
+//   },
 
-  "monitor" :{
-    // monitor 1 : value recorder
-    "r0_pvholder" : { // this is just a name
-      "template" : "value recorder",
-        "cond": "#stage_tracker# == 1",
-        "val":"RTL.registers[0]"
-    }
-  },    
+//   "monitor" :{
+//     // monitor 1 : value recorder
+//     "r0_pvholder" : { // this is just a name
+//       "template" : "value recorder",
+//         "cond": "#stage_tracker# == 1",
+//         "val":"RTL.registers[0]"
+//     }
+//   },    
 
-  "functions":{ // for uninterpreted functions 
-      // "<function-name>": [
-      //   [
-      //     "<refinement-expression>", "<refinement-expression>",
-      //     "<refinement-expression>", "<refinement-expression>",
-      //     // more ...
-      //   ],
-      //   ...
-      // ]
-  },
+//   "functions":{ // for uninterpreted functions 
+//       // "<function-name>": [
+//       //   [
+//       //     "<refinement-expression>", "<refinement-expression>",
+//       //     "<refinement-expression>", "<refinement-expression>",
+//       //     // more ...
+//       //   ],
+//       //   ...
+//       // ]
+//   },
 
-  "assumptions" : [
-    // "ILA.pc[1:0] == 2'b00",
-    // "RTL.near_mem$imem_pc[1:0] == 2'b00",
-    // "(#monitor_s2# |-> (RTL.near_mem$dmem_exc == 0))" // no memory exception, not in this model
-  ]
-}
+//   "assumptions" : [
+//     // "ILA.pc[1:0] == 2'b00",
+//     // "RTL.near_mem$imem_pc[1:0] == 2'b00",
+//     // "(#monitor_s2# |-> (RTL.near_mem$dmem_exc == 0))" // no memory exception, not in this model
+//   ]
+// }
 
 {
   "state mapping": { 

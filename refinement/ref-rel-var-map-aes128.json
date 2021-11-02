@@ -1,4 +1,4 @@
-{
+{//test
     "state mapping": {  
         "ciphertext":   [["ILA.round == 0" ,null ],
                         ["ILA.round == 1" ,"s0" ],
@@ -25,39 +25,45 @@
                         ["ILA.round == 10","k9" ],
                         ["ILA.round == 11", null] ],
         "round"     : null 
-    },
-  
-  
-    "input mapping": {
-       "inst":"RTL.inst"
-    },
-  
-    "rtl-interface-connection" : {
-      "CLOCK" : "clk",
-      "RESET" : "rst",
-      "INPUT" : {
-        "dummy_read_rf" : "#dummy_read_rf#"
-      }
-    },
-  
-    "monitor" :{
-      // monitor 1 : value recorder
-      "r0_pvholder" : { // this is just a name
-        "template" : "value recorder",
-          "cond": "#stage_tracker# == 1",
-          "val":"RTL.registers[0]"
-      }
-    },    
 
-    "functions":{ // for uninterpreted functions 
-        "<function-name>": [
-          [
-            "<refinement-expression>", "<refinement-expression>",
-            "<refinement-expression>", "<refinement-expression>",
-            // more ...
-          ],
-          ...
-        ]
+    },
+  
+    // "input mapping": {
+
+    // },
+  
+    "rtl interface-connection" : {
+      "CLOCK" : "clk",
+      "RESET" : "rst"  // an input or a list of inputs
+      // "clk":"**CLOCK**",
+      // "key":"key_in",
+      // "state":"plaintext",
+      // "out":"**KEEP**"
     }
+  
+    // "monitor" :{
+    //   // // monitor 1 : value recorder
+    //   // "r0_pvholder" : { // this is just a name
+    //   //   "template" : "value recorder",
+    //   //     "cond": "#stage_tracker# == 1",
+    //   //     "val":"RTL.registers[0]"
+    //   // }
+    // },    
+
+    // // "functions":{ // for uninterpreted functions 
+    // //     "<function-name>": [
+    // //       [
+    // //         "<refinement-expression>", "<refinement-expression>",
+    // //         "<refinement-expression>", "<refinement-expression>",
+    // //         // more ...
+    // //       ]
+    // //     ]
+    // // },
+
+    // "assumptions" : [
+    //   // "ILA.pc[1:0] == 2'b00",
+    //   // "RTL.near_mem$imem_pc[1:0] == 2'b00",
+    //   // "(#monitor_s2# |-> (RTL.near_mem$dmem_exc == 0))" // no memory exception, not in this model
+    // ]
 }
   
