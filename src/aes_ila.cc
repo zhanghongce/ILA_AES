@@ -194,7 +194,7 @@ AES::AES()
     instr.SetUpdate(key, key);
     instr.SetUpdate(counter, counter);
     // but not for status
-    // you can explicitly status how much you know about it
+    // you can explicitly say how much you know about it
     // these are the non-deterministics in the spec
     instr.SetUpdate(status, Ite(is_status_idle, status, unknown(2)()));
   }

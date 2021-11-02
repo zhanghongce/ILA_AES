@@ -1,6 +1,5 @@
 {
-  "models": { "ILA":"m0" , "VERILOG": "m1" },
-  "state mapping": { 
+  "state mapping": {  
     "aes_address"        : "m1.aes_reg_opaddr_i.reg_out",
     "aes_length"         : "m1.aes_reg_oplen_i.reg_out",
     "aes_key"            : "m1.aes_reg_key0_i.reg_out",
@@ -10,41 +9,75 @@
     "outdata"            : "m1.data_out_reg"
   },
 
-  "interface mapping": {
-     "rst"           :           "**RESET**", 
-     "clk"           :           "**CLOCK**",
 
-     "addr"          : "cmdaddr",
-     "data_in"       : "cmddata",
-
-     "xram_data_out" : "**MEM**XRAM.wdata",
-     "xram_data_in"  : "**MEM**XRAM.rdata",
-     "wr"            :                           "**KEEP**",
-     "ack"           :                           "**KEEP**",
-     "stb"           :                           "**KEEP**",
-     "xram_ack"      :                           "**KEEP**",
-     "xram_addr"     :                           "**KEEP**",
-     "xram_wr"       :                           "**KEEP**",
-     "xram_stb"      :                           "**KEEP**",
-     "data_out"      :           "**SO**",
-     "aes_state"     :           "**SO**",
-     "aes_addr"      :           "**SO**",
-     "aes_len"       :           "**SO**",
-     "aes_ctr"       :           "**SO**",
-     "aes_key0"      :           "**SO**",
-     "aes_step:"     :           "**SO**"
+  "input mapping": {
+     //"inst":"RTL.inst"
   },
 
-  "mapping control" : [ "(m1.xram_wr & m1.xram_stb) == __MEM_XRAM_0_wen" , 
-                        "(~ ( m0.cmd == 2 )) || ( m1.wr == 1)" , 
-                        "(~ ( m0.cmd == 1 )) || ( m1.wr == 0)",
-                        " m1.xram_addr ==  __MEM_XRAM_0_raddr ",
-                        " m1.xram_addr ==  __MEM_XRAM_0_waddr "
-                      ],
+  "rtl interface-connection" : {
+    "CLOCK" : "CLK",
+    "RESET" : "RST"
+  },
+
+  "monitor" :{
+    // monitor 1 : value recorder
+    "r0_pvholder" : { // this is just a name
+      "template" : "value recorder",
+        "cond": "#stage_tracker# == 1",
+        "val":"RTL.registers[0]"
+    }
+  },    
+
+  "functions":{ // for uninterpreted functions 
+      // "<function-name>": [
+      //   [
+      //     "<refinement-expression>", "<refinement-expression>",
+      //     "<refinement-expression>", "<refinement-expression>",
+      //     // more ...
+      //   ],
+      //   ...
+      // ]
+  },
+
+  "assumptions" : [
+    // "ILA.pc[1:0] == 2'b00",
+    // "RTL.near_mem$imem_pc[1:0] == 2'b00",
+    // "(#monitor_s2# |-> (RTL.near_mem$dmem_exc == 0))" // no memory exception, not in this model
+  ]
+}
+
+{
+  "state mapping": { 
+    "aes_address"        : "RTL.aes_reg_opaddr_i.reg_out",
+    "aes_length"         : "RTL.aes_reg_oplen_i.reg_out",
+    "aes_key"            : "RTL.aes_reg_key0_i.reg_out",
+    "aes_counter"        : "RTL.aes_reg_ctr_i.reg_out",
+    "aes_status"         : "RTL.aes_reg_state",
+    "XRAM"               : {
+      "wen"   : "RTL.xram_wr & RTL.xram_stb",
+      "waddr" : "RTL.xram_addr",
+      "wdata" : "RTL.xram_data_out",
+      "ren"   : "~RTL.xram_wr & RTL.xram_stb",
+      "raddr" : "RTL.xram_addr",
+      "rdata" : "RTL.xram_data_in"
+    },
+    "outdata"            : "RTL.data_out_reg"
+  },
+
+  "rtl interface-connection" : {
+    "CLOCK" : "clk",
+    "RESET" : "rst"
+  },
+
+  "input mapping" : {
+    "cmd"    : "RTL.wr == 1 ? 2'd2 : 2'd1",
+    "cmdaddr": "RTL.addr",
+    "cmddata": "RTL.data_in"
+  },
 
   "functions":{
-      "unknown0":[["__IEND__","m1.aes_reg_state"]],
-      "unknown1":[["__IEND__","m1.aes_reg_state"]],
-      "unknown2":[["__IEND__","m1.aes_reg_ctr_i.reg_out"]]
+      "unknown0":[ {"result" : "RTL.aes_reg_state @ commit "} ],
+      "unknown1":[ {"result" : "RTL.aes_reg_state @ commit "} ],
+      "unknown2":[ {"result" : "RTL.aes_reg_ctr_i.reg_out @ commit "} ]
   }
 }
