@@ -10,8 +10,7 @@
     "instructions": [
       {
         "instruction" : "LOAD",
-        "ready signal": "RTL.xram_ack ## 1",
-        "max bound"   : 20
+        "ready signal": "RTL.xram_ack ## 1"
       },
       {
         "instruction" : "OPERATE",
@@ -19,8 +18,7 @@
       },
       {
         "instruction" : "STORE",
-        "ready signal": "RTL.xram_ack ## 1",
-        "max bound"   : 20
+        "ready signal": "RTL.xram_ack ## 1"
       }
     ]
   }
