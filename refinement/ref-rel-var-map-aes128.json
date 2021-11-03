@@ -28,9 +28,10 @@
 
     },
   
-    // "input mapping": {
-
-    // },
+    "input mapping": {
+      "key_in" : "RTL.key",
+      "plaintext" : "RTL.state"
+    },
   
     "rtl interface-connection" : {
       "CLOCK" : "clk",

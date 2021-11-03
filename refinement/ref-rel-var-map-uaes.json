@@ -15,10 +15,10 @@
     },
     "outdata"            : "RTL.data_out_reg",
 
-    "rd_data"            : "mem_data_buf",
-    "enc_data"           : "encrypted_data_buf",
-    "byte_cnt"           : "byte_counter",
-    "blk_cnt"            : "block_counter"
+    "rd_data"            : "RTL.mem_data_buf",
+    "enc_data"           : "RTL.encrypted_data_buf",
+    "byte_cnt"           : "RTL.byte_counter",
+    "blk_cnt"            : "RTL.block_counter"
   },
 
 
@@ -43,9 +43,12 @@
   // },    
 
   "functions":{ // for uninterpreted functions 
-    "aes128":[["__START__","RTL.aes_128_i.out","__START__","uaes_ctr","__START__","aes_curr_key"]]
+    "aes128":[
+      {
+        "result":"RTL.aes_128_i.out",
+        "arg":["RTL.uaes_ctr", "RTL.aes_curr_key"] }
+      ]
   }
-
   // "assumptions" : [
   //   // "ILA.pc[1:0] == 2'b00",
   //   // "RTL.near_mem$imem_pc[1:0] == 2'b00",

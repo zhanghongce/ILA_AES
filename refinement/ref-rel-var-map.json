@@ -76,8 +76,8 @@
   },
 
   "functions":{
-      "unknown0":[ {"result" : "RTL.aes_reg_state @ commit "} ],
-      "unknown1":[ {"result" : "RTL.aes_reg_state @ commit "} ],
-      "unknown2":[ {"result" : "RTL.aes_reg_ctr_i.reg_out @ commit "} ]
+      "unknown0":[ {"result" : "RTL.aes_reg_state @ commit ", "arg": []} ],
+      "unknown1":[ {"result" : "RTL.aes_reg_state @ commit ", "arg": []} ],
+      "unknown2":[ {"result" : "RTL.aes_reg_ctr_i.reg_out @ commit ", "arg": []} ]
   }
 }
